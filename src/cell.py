@@ -7,8 +7,11 @@ class Cell:
 
         self.visited = False
 
+    def __eq__(self, other):
+        return (self.x == other.x) and (self.y == other.y)
+
     def __repr__(self) -> str:
-        return str([(self.x, self.y)])
+        return str((self.x, self.y))
 
     def neighbours(self):
         nbrs = []
