@@ -1,62 +1,49 @@
-from cell import Cell
 import random
 
+from grid import Grid
 
-def check_nbrs(cell: Cell, stack):
-    nbrs = cell.neighbours()
+
+stack = []
+visited = []
+m = Grid(4)
+
+
+def check_nbeighbours(next):
+    nbrs = m.neighbours(next)
+
     for nbr in nbrs:
-        if (nbr not in stack) and (not nbr.visited):
-            return nbr
+        if nbr not in visited:
+            return True
     
     return False
 
 
-stack = []
-path = []
-in_path = set()
-
-def rdfs(start: Cell):
-    print(start, stack)
-    if len(in_path) == start.size ** 2:
+def rdfs(start):
+    if len(set(visited)) == m.size ** 2:
         return
 
     stack.append(start)
-    path.append(start)
-    in_path.add((start.x, start.y))
+    visited.append(start)
 
-    nbrs = start.neighbours()
+    nbrs = m.neighbours(start)
     random.shuffle(nbrs)
 
-    nbr_to_visit = None
+    next = None
     for nbr in nbrs:
-        if (nbr not in stack) and (not nbr.visited):
-            nbr_to_visit = nbr
+        if (nbr not in stack) and (nbr not in visited):
+            next = nbr
             break
     
-    if nbr_to_visit:
-        rdfs(nbr_to_visit)
+    if next:
+        return rdfs(next)
+
     else:
-        start.visted = True
-
-        while True:
+        while len(stack) > 0:
             next = stack.pop()
-            if check_nbrs(next, stack):
-                break
-        
-        rdfs(next)
+            if check_nbeighbours(next):
+                return rdfs(next)
 
-    return stack
+    
 
-stack = []
-path = []
-in_path = set()
-
-size = 4
-
-m = [[
-    Cell(x, y, size) for y in range(size)
-] for x in range(size)]
-
-
-stack = rdfs(m[0][0])
-len(path)
+rdfs((0, 0))
+visited
