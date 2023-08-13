@@ -1,6 +1,6 @@
 ### TODO
 - Make Maze Size Agnostic
-- Cleanup
+- Cleanup ✅
 - Solve and Plot
 - Maze Generation GIF? 
 - Other Algos

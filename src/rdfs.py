@@ -1,15 +1,8 @@
 import random
 
-from grid import Grid
 
-
-stack = []
-visited = []
-m = Grid(4)
-
-
-def check_nbeighbours(next):
-    nbrs = m.neighbours(next)
+def _check_nbeighbours(next, visited, maze):
+    nbrs = maze.neighbours(next)
 
     for nbr in nbrs:
         if nbr not in visited:
@@ -18,14 +11,14 @@ def check_nbeighbours(next):
     return False
 
 
-def rdfs(start):
-    if len(set(visited)) == m.size ** 2:
+def rdfs(maze, start, stack, visited):
+    if len(set(visited)) == maze.size ** 2:
         return
 
     stack.append(start)
     visited.append(start)
 
-    nbrs = m.neighbours(start)
+    nbrs = maze.neighbours(start)
     random.shuffle(nbrs)
 
     next = None
@@ -35,15 +28,21 @@ def rdfs(start):
             break
     
     if next:
-        return rdfs(next)
+        return rdfs(maze, next, stack, visited)
 
     else:
         while len(stack) > 0:
             next = stack.pop()
-            if check_nbeighbours(next):
-                return rdfs(next)
+            if _check_nbeighbours(next, visited, maze):
+                return rdfs(maze, next, stack, visited)
 
-    
 
-rdfs((0, 0))
-visited
+if __name__ == "__main__":
+    from maze import Maze
+
+    stack = []
+    visited = []
+    m = Maze(20)
+    rdfs(m, (0, 0), stack, visited)
+
+    print(len(set(visited)), len(visited))
