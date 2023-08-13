@@ -12,7 +12,7 @@ def _check_nbeighbours(next, visited, maze):
 
 
 def rdfs(maze, start, stack, visited):
-    if len(set(visited)) == maze.size ** 2:
+    if len(set(visited)) == maze.num_rows * maze.num_cols:
         return
 
     stack.append(start)

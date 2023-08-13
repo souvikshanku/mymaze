@@ -1,5 +1,5 @@
 ### TODO
-- Make Maze Size Agnostic
+- Make Maze Size Agnostic ✅
 - Cleanup ✅
 - Solve and Plot
 - Maze Generation GIF? 
