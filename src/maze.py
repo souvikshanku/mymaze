@@ -52,8 +52,11 @@ class Maze:
         self.grid = np.pad(self.grid, 1)
 
     def plot(self):
-        plt.gca().axis('off')
-        plt.imsave("img/maze.png", self.grid)
+        fig = plt.figure(figsize=(10, 10))
+        ax = fig.add_subplot(111)
+        ax.imshow(self.grid)
+        ax.axis('off')
+        fig.savefig("img/maze.png", bbox_inches = "tight")
 
 
 if __name__ == "__main__":
