@@ -1,7 +1,7 @@
 import random
 
 
-def _nbeighbours_visited(next, visited, maze):
+def _nbeighbours_unvisited(next, visited, maze):
     nbrs = maze.neighbours(next)
 
     for nbr in nbrs:
@@ -35,7 +35,7 @@ def rdfs(maze, start, stack, visited):
             next = stack.pop()
             visited.append(next)
 
-            if _nbeighbours_visited(next, visited, maze):
+            if _nbeighbours_unvisited(next, visited, maze):
                 return rdfs(maze, next, stack, visited)
 
 
