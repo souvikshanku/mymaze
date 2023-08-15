@@ -1,7 +1,7 @@
 import random
 
 
-def _check_nbeighbours(next, visited, maze):
+def _nbeighbours_visited(next, visited, maze):
     nbrs = maze.neighbours(next)
 
     for nbr in nbrs:
@@ -26,14 +26,16 @@ def rdfs(maze, start, stack, visited):
         if (nbr not in stack) and (nbr not in visited):
             next = nbr
             break
-    
+
     if next:
         return rdfs(maze, next, stack, visited)
 
     else:
         while len(stack) > 0:
             next = stack.pop()
-            if _check_nbeighbours(next, visited, maze):
+            visited.append(next)
+
+            if _nbeighbours_visited(next, visited, maze):
                 return rdfs(maze, next, stack, visited)
 
 
@@ -42,7 +44,7 @@ if __name__ == "__main__":
 
     stack = []
     visited = []
-    m = Maze(20)
+    m = Maze(10, 10)
     rdfs(m, (0, 0), stack, visited)
 
     print(len(set(visited)), len(visited))

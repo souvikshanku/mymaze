@@ -8,7 +8,9 @@ class Maze:
     def __init__(self, num_rows, num_cols) -> None:
         self.num_rows = num_rows
         self.num_cols = num_cols
-        self.maze = np.zeros((num_rows , num_cols))
+
+        self.create()
+        self.generate_grid()
 
     def neighbours(self, cell: tuple[int, int]):
         x, y = cell
@@ -49,18 +51,12 @@ class Maze:
 
         self.grid = np.pad(self.grid, 1)
 
-        return self.grid
-
     def plot(self):
-        grid = self.generate_grid()
         plt.gca().axis('off')
-        plt.imsave("img/maze.png", grid)
-
+        plt.imsave("img/maze.png", self.grid)
 
 
 if __name__ == "__main__":
     m = Maze(40, 20)
-    m.create()
-    grid = m.generate_grid()
-    print(grid)
+    print(m.grid)
     m.plot()
