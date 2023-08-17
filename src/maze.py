@@ -1,7 +1,10 @@
+from collections import defaultdict
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 from rdfs import rdfs
+
 
 
 class Maze:
@@ -11,6 +14,10 @@ class Maze:
 
         self.create()
         self.generate_grid()
+
+        self.adj_list = defaultdict(list)
+        for i in range(len(self.visited) - 1):
+            self.adj_list[self.visited[i]].append(self.visited[i + 1])
 
     def neighbours(self, cell: tuple[int, int]):
         x, y = cell
