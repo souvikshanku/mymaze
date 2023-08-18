@@ -3,8 +3,7 @@ from collections import defaultdict
 import numpy as np
 import matplotlib.pyplot as plt
 
-from rdfs import rdfs
-from bfs import bfs
+from algos import bfs, rdfs
 
 
 class Maze:
