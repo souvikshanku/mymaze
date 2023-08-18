@@ -109,7 +109,6 @@ class Maze:
         # Solved Maze
         if self.solved:
             fig = plt.figure(figsize=(10, 10))
-            fig = plt.figure()
             ax = fig.add_subplot(111)
             ax.imshow(self.grid)
 
