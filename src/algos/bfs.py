@@ -21,7 +21,4 @@ def bfs(adj_list, start, end):
             if nbr == end:
                 return distance_from_start
 
-        # if next == end:
-        #     break
-
     return distance_from_start
