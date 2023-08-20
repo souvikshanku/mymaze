@@ -12,8 +12,8 @@
 Example usage
 -------------
 ```python
-from maze import Maze
-maze = Maze(40, 20)
-maze.solve()
-maze.plot()
+>>> from maze import Maze
+>>> maze = Maze(40, 20)
+>>> maze.solve()
+>>> maze.plot()
 ```
